@@ -60,7 +60,8 @@ struct GlobalStruct
 int main(int argc, char **argv);
 void opcode_error(stack_t **stack, int line_number, char *opcode);
 void opcmp(stack_t **stack, int line_number, char *opcode);
-void push(stack_t **stack, unsigned int line_number);
+/*void push(stack_t **stack, unsigned int line_number);*/
+void push(stack_t **stack, unsigned int line_number __attribute__((unused)));
 void pall(stack_t **stack, unsigned int line_number);
 void pint(stack_t **stack, unsigned int line_number);
 void pop(stack_t **stack, unsigned int line_number);
