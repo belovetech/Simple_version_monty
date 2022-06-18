@@ -64,7 +64,8 @@
     What it does: computes the remainder of the division of the second top element of the stack by the top element of the stack.
     The answer is stored in the second top element of the stack and the top element is removed so that the top element contains
     the result and the stack is one element shorter.
-    
+
 ## Author
-    Abeeb Raheem
-Junaid-eko Raimot
+
+    - Abeeb Raheem
+    - Junaid-eko Raimot
