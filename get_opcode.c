@@ -1,19 +1,35 @@
 #include "monty.h"
 
-
-void (*get_op_func(char *opcode))(stack_t**, unsigned int)
+void opcmp(stack_t **stack, int line_number, char *opcode)
 {
-    instruction_t op_funcs[] = {
-        {'push', monty_push},
-        {'pall', monty_pall},
+    int i = 0;
+    instruction_t opc[] = {
+        {"push", push},
+        {"pall", pall},
+        {"pint", pint},
+        {"pop", pop},
+        {"nop", nop},
+        {"swap", swap},
+        {"add", add},
+        {"sub", sub},
+        {"div", _div},
+        {"mul", mul},
+        {"mod", mod},
+        {"pchar", pchar},
+        {"pstr", pstr},
+        {"rotl", rotl},
+        {"rotr", rotr},
         {NULL, NULL}
     };
-    
-    int i;
-    for (i = 0; op_funcs[i].opcode; i++)
+
+    while (opc[i].opcode != NULL)
     {
-        if (strcmp(opcode, op_funcs[i].opcode) == 0)
-            return op_funcs[i].f;
+        if (strcmp(opcode, opc[i].opcode) == 0)
+        {
+            opc[i].f(stack, line_number);
+            return;
+        }
+        i++;
     }
-    return (NULL)
+    opcode_error(stack, line_number, opcode);
 }

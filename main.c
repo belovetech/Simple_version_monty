@@ -1,28 +1,44 @@
 #include "monty.h"
 
+#define BUFSIZE 1024
 
-int main(int argc, char *argv[])
+int main(int argc, char **argv)
 {
-     FILE *bytecodes = NULL;
-     size_t status;
-    
+    char opcode[6] = {0}, end[BUFSIZE] = {0};
+    stack_t *stack =  NULL;
+    ssize_t nread;
+    size_t len = 0;
+    unsigned int line_number = 0;
+    int matches;
+
+    /* too many or few args to monty interpreter */
     if (argc != 2)
+        args_error();
+
+    global.monty_stream = NULL;
+    global.monty_stream = fopen(argv[1], "r");
+
+    /* if file can't open */
+    if (global.monty_stream == NULL)
+        file_error(argv[1]);
+
+    global.lineptr = NULL;
+    while ((nread = getline(&global.lineptr, &len, global.monty_stream) != -1))
     {
-     printf("USAGE: monty file\n");
-        exit(EXIT_FAILURE);
+        line_number++;
+        if (!_iswhitespace())
+        {
+            matches = sscanf(global.lineptr, "%s%d%s", opcode, &global.data, end);
+            if (matches != 2 && strcmp(opcode, "push") == 0)
+                push_error(stack, line_number);
+
+            if (opcode != NULL && opcode[0] != '#')
+                opcmp(&stack, line_number, opcode);
+        }
+        free(global.lineptr);
+        global.lineptr = NULL;
     }
-    
-    bytecodes = fopen(argv[1], 'r');
-    
-    if (bytecode == NULL)
-    {
-        write(2, "Error: Can't open file <file>", 60);
-        exit(EXIT_FAILURE);
-    }
-    
-    status = monty(bytescodes);
-    
-    fclose(bytecodes);
-    
+    exit_free(stack);
     return (0);
+
 }

@@ -1,17 +1,13 @@
 #ifndef _MONTY_H
 #define _MONTY_H
 
+#include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <fcntl.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <string.h>
-
-#define STACK 1
-#define QUEUE 2
-#define DELIMETERS " \t\n"
-extern char **tokens;
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -37,6 +33,7 @@ typedef struct stack_s
  * Description: opcode and its function
  * for stack, queues, LIFO, FIFO
  */
+ 
 typedef struct instruction_s
 {
     char *opcode;
@@ -44,13 +41,62 @@ typedef struct instruction_s
 } instruction_t;
 
 
-int create_stack(stack_t **stack);
-int monty(FILE *bytecodes);
-char **strtow(char *str);
-int wrdcnt(char *s);
-int is_line_empty(char *line, char *delimeters);
-void free_stack(stack_t **stack);
-void free_token();
 
+/**
+ * struct GlobalStruct - contains all globals
+ * @data: int for push
+ * @monty_file: file stream for monty
+ * @lineptr: pointer to the string allocated by getline function
+ */
+struct GlobalStruct
+{
+    int data;
+    FILE *monty_stream;
+    char *lineptr;
+} global;
+
+
+/*function prototypes*/
+int main(int argc, char **argv);
+void opcode_error(stack_t **stack, int line_number, char *opcode);
+void opcmp(stack_t **stack, int line_number, char *opcode);
+void push(stack_t **stack, unsigned int line_number);
+void pall(stack_t **stack, unsigned int line_number);
+void pint(stack_t **stack, unsigned int line_number);
+void pop(stack_t **stack, unsigned int line_number);
+void swap(stack_t **stack, unsigned int line_number);
+void add(stack_t **stack, unsigned int line_number);
+void sub(stack_t **stack, unsigned int line_number);
+void _div(stack_t **stack, unsigned int line_number);
+void mul(stack_t **stack, unsigned int line_number);
+void mod(stack_t **stack, unsigned int line_number);
+void nop(stack_t **stack, unsigned int line_number);
+void pchar(stack_t **stack, unsigned int line_number);
+void pstr(stack_t **stack, unsigned int line_number);
+void rotl(stack_t **stack, unsigned int line_number);
+void rotr(stack_t **stack, unsigned int line_number);
+
+/*helper function prototypes*/
+int _iswhitespace(void);
+void free_stack(stack_t *stack);
+void exit_free(stack_t *stack);
+
+/*errors prototytpes*/
+void args_error();
+void malloc_error(stack_t **stack);
+void file_error(char *filename);
+void push_error(stack_t *stack, int line_number);
+void pint_error(stack_t **stack, int line_number);
+void pop_error(stack_t **stack, int line_number);
+void swap_error(stack_t **stack, int line_number);
+void add_error(stack_t **stack, int line_number);
+void sub_error(stack_t **stack, int line_number);
+void div_error1(stack_t **stack, int line_number);
+void div_error2(stack_t **stack, int line_number);
+void mul_error(stack_t **stack, int line_number);
+void mod_error(stack_t **stack, int line_number);
+void opcode_error(stack_t **stack, int line_number, char *opcode);
+void pchar_error1(stack_t **stack, int line_number);
+void pchar_error2(stack_t **stack, int line_number);
 
 #endif /*_MONTY_H*/
