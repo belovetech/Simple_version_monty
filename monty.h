@@ -20,9 +20,9 @@
  */
 typedef struct stack_s
 {
-    int n;
-    struct stack_s *prev;
-    struct stack_s *next;
+	int n;
+	struct stack_s *prev;
+	struct stack_s *next;
 } stack_t;
 
 /**
@@ -33,11 +33,11 @@ typedef struct stack_s
  * Description: opcode and its function
  * for stack, queues, LIFO, FIFO
  */
- 
+
 typedef struct instruction_s
 {
-    char *opcode;
-    void (*f)(stack_t **stack, unsigned int line_number);
+	char *opcode;
+	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
 
@@ -45,14 +45,14 @@ typedef struct instruction_s
 /**
  * struct GlobalStruct - contains all globals
  * @data: int for push
- * @monty_file: file stream for monty
+ * @monty_stream: file stream for monty
  * @lineptr: pointer to the string allocated by getline function
  */
 struct GlobalStruct
 {
-    int data;
-    FILE *monty_stream;
-    char *lineptr;
+	int data;
+	FILE *monty_stream;
+	char *lineptr;
 } global;
 
 
@@ -82,7 +82,7 @@ void free_stack(stack_t *stack);
 void exit_free(stack_t *stack);
 
 /*errors prototytpes*/
-void args_error();
+void args_error(void);
 void malloc_error(stack_t **stack);
 void file_error(char *filename);
 void push_error(stack_t *stack, int line_number);

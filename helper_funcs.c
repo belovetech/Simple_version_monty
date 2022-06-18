@@ -6,14 +6,14 @@
  */
 int _iswhitespace(void)
 {
-    int i, j;
-    char *wsc = "\t\n\r "; /*white-space characters*/
+	int i, j;
+	char *wsc = "\t\n\r "; /*white-space characters*/
 
-    for (i = 0; global.lineptr[i] != '\0'; i++)
-        for (j = 0; wsc[j] != '\0' && wsc[j] != global.lineptr[i]; j++)
-            if (wsc[j] == '\n')
-                return (0);
-    return (1);
+	for (i = 0; global.lineptr[i] != '\0'; i++)
+		for (j = 0; wsc[j] != '\0' && wsc[j] != global.lineptr[i]; j++)
+			if (wsc[j] == '\n')
+				return (0);
+	return (1);
 }
 
 /**
@@ -22,14 +22,14 @@ int _iswhitespace(void)
  */
 void free_stack(stack_t *stack)
 {
-    stack_t *temp;
+	stack_t *temp;
 
-    while (stack != NULL)
-    {
-        temp = stack->next;
-        free(stack);
-        stack = temp;
-    }
+	while (stack != NULL)
+	{
+		temp = stack->next;
+		free(stack);
+		stack = temp;
+	}
 }
 
 /**
@@ -38,9 +38,9 @@ void free_stack(stack_t *stack)
  */
 void exit_free(stack_t *stack)
 {
-    fclose(global.monty_stream);
+	fclose(global.monty_stream);
 
-    if (global.lineptr != NULL)
-        free(global.lineptr);
-    free(stack);
+	if (global.lineptr != NULL)
+		free(global.lineptr);
+	free(stack);
 }
