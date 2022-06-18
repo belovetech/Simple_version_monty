@@ -2,6 +2,13 @@
 
 #define BUFSIZE 1024
 
+/**
+ * main - Gets file, read line of the file and parse it
+ * @argc: arguement count
+ * @argv: arguement vector
+ * Return: 0 always (success)
+ */
+
 int main(int argc, char **argv)
 {
     char opcode[6] = {0}, end[BUFSIZE] = {0};

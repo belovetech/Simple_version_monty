@@ -1,5 +1,9 @@
 #include "monty.h"
-
+/**
+ * pchar - prints the char at the top of the stack.
+ * @stack: pointer to the stack
+ * @line_number: line number
+ */
 void pchar(stack_t **stack, unsigned int line_number)
 {
     int first;
@@ -14,6 +18,11 @@ void pchar(stack_t **stack, unsigned int line_number)
         pchar_error2(stack, line_number);
 }
 
+/**
+ * pstr - prints the string starting at the top of the stack.
+ * @stack: pointer to the stack
+ * @line_number: line number
+ */
 void pstr(stack_t **stack, unsigned int line_number)
 {
     (void) line_number;
@@ -35,6 +44,11 @@ void pstr(stack_t **stack, unsigned int line_number)
     fprintf(stdout, "\n");
 }
 
+/**
+ * rotl - rotates the stack to the top
+ * @stack: pointer to the stack
+ * @line_number: line number
+ */
 void rotl(stack_t **stack, unsigned int line_number)
 {
     stack_t *last, *temp = *stack;
@@ -54,7 +68,11 @@ void rotl(stack_t **stack, unsigned int line_number)
 
     pop(stack, line_number);
 }
-
+/**
+ * rotr - rotates the stack to the bottom.
+ * @stack: pointer to the stack
+ * @line_number: line number
+ */
 void rotr(stack_t **stack, unsigned int line_number)
 {
     stack_t *temp = *stack;

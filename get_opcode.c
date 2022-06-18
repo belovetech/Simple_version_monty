@@ -1,5 +1,10 @@
 #include "monty.h"
-
+/**
+ * opcmp - compares opcode and link it with its corresponding function
+ * @stack: pointer to the stack
+ * @line_number: line number
+ * @opcode: operation codes
+ */
 void opcmp(stack_t **stack, int line_number, char *opcode)
 {
     int i = 0;

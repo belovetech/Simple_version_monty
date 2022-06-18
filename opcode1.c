@@ -1,8 +1,12 @@
 #include "monty.h"
-
+/**
+ * push - pushes data to the top of the stack
+ * @stack: pointer to the stack
+ * @line_number: line number
+ */
 void push(stack_t **stack, unsigned int line_number)
 {
-    stack_t *newNode;
+    stack_t *newNode = NULL;
     (void) line_number;
 
     newNode = malloc(sizeof(stack_t));
@@ -23,11 +27,16 @@ void push(stack_t **stack, unsigned int line_number)
         *stack = newNode;
     }
 }
-
+/**
+ * pall - prints all data in the stack
+ * @stack: pointer to the stack
+ * @line_number: line number
+ */
 void pall(stack_t **stack, unsigned int line_number)
 {
     stack_t *temp;
     (void) line_number;
+
     if (*stack == NULL)
         return;
     else
@@ -35,22 +44,29 @@ void pall(stack_t **stack, unsigned int line_number)
         temp = *stack;
         while (temp != NULL)
         {
-            printf("%d\n", temp->n);
+            fprintf(stdout, "%d\n", temp->n);
             temp = temp->next;
         }
     }
 }
 
-
+/**
+ * pint - prints first data in the stack
+ * @stack: pointer to the stack
+ * @line_number: line number
+ */
 void pint(stack_t **stack, unsigned int line_number)
 {
     if (*stack == NULL)
         pint_error(stack, line_number);
-    printf("%d\n", (*stack)->n);
+    fprintf(stdout, "%d\n", (*stack)->n);
 }
 
-
-void pop(stack_t **stack, unsigned int line_number)
+/**
+ * pop - removes the first data in the stack
+ * @stack: pointer to the stack
+ * @line_number: line number
+ */void pop(stack_t **stack, unsigned int line_number)
 {
     stack_t *temp = *stack;
 
@@ -70,6 +86,11 @@ void pop(stack_t **stack, unsigned int line_number)
     }
 }
 
+/**
+ * nop - prints nothing
+ * @stack: pointer to the stack
+ * @line_number: line number
+ */
 void nop(stack_t **stack, unsigned int line_number)
 {
    (void) stack;
